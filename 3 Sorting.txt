@@ -1,0 +1,196 @@
+// selection sort 
+
+import java.util.*;
+class SelectionSort{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter no of elem");
+        int n=sc.nextInt();
+        System.out.println("Enter elem");
+        int a[]=new int[n];
+        for(int i=0;i<n;i++){
+            a[i]=sc.nextInt();
+        }
+        
+        for(int i=0;i<n-1;i++){
+            int min=i;
+            for(int j=i+1;j<n;j++){
+                if(a[j]<a[min]){
+                    min=j;
+                }
+            }
+            int temp=a[i];
+            a[i]=a[min];
+            a[min]=temp;
+        }
+        
+        for(int x:a){
+            System.out.print(x+" ");
+        }
+        
+    }
+}
+
+//output
+Enter no of elem
+5
+Enter elem
+1 6 2 4 5
+1 2 4 5 6
+
+//Prims Algorithm
+
+import java.util.*;
+
+public class PrimsSimple {
+
+    static int V = 5;
+    static String[] names = {"A", "B", "C", "D", "E"};
+
+    static int minKey(int[] key, boolean[] visited) {
+        int min = Integer.MAX_VALUE;
+        int index = -1;
+
+        for (int i = 0; i < V; i++) {
+            if (!visited[i] && key[i] < min) {
+                min = key[i];
+                index = i;
+            }
+        }
+
+        return index;
+    }
+
+    static void prims(int[][] graph) {
+        int[] key = new int[V];
+        int[] parent = new int[V];
+        boolean[] visited = new boolean[V];
+
+        Arrays.fill(key, Integer.MAX_VALUE);
+        Arrays.fill(parent, -1);
+
+        key[0] = 0; // start from A
+
+        for (int count = 0; count < V - 1; count++) {
+            int curr = minKey(key, visited);
+            visited[curr] = true;
+
+            for (int next = 0; next < V; next++) {
+                if (graph[curr][next] != 0 &&
+                    !visited[next] &&
+                    graph[curr][next] < key[next]) {
+
+                    key[next] = graph[curr][next];
+                    parent[next] = curr;
+                }
+            }
+        }
+
+        int totalCost = 0;
+
+        System.out.println("Edges in MST:");
+
+        for (int i = 1; i < V; i++) {
+            System.out.println(names[parent[i]] + " - " + names[i] + " : " + key[i]);
+            totalCost += key[i];
+        }
+
+        System.out.println("Total Cost = " + totalCost);
+    }
+
+    public static void main(String[] args) {
+
+        int[][] graph = {
+            // A  B  C  D  E
+            { 0, 1, 4, 2, 0 }, // A
+            { 1, 0, 3, 0, 0 }, // B
+            { 4, 3, 0, 0, 5 }, // C
+            { 2, 0, 0, 0, 6 }, // D
+            { 0, 0, 5, 6, 0 }  // E
+        };
+
+        prims(graph);
+    }
+}
+
+//output
+Edges in MST:
+A - B : 1
+B - C : 3
+A - D : 2
+C - E : 5
+Total Cost = 11
+
+
+//job scheduling
+
+import java.util.*;
+
+public class Main {
+
+    static class Job {
+        char jobid;
+        int profit;
+        int deadline;
+
+        public Job(char jobid, int deadline, int profit) {
+            this.jobid = jobid;
+            this.deadline = deadline;
+            this.profit = profit;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Job[] jobs = {
+            new Job('A', 3, 100),
+            new Job('B', 3, 50),
+            new Job('C', 2, 73),
+            new Job('D', 1, 24),
+            new Job('E', 1, 19)
+        };
+
+        Arrays.sort(jobs, (a, b) -> b.profit - a.profit);
+
+        int maxdeadline = 0;
+
+        for (Job j : jobs) {
+            if (j.deadline > maxdeadline) {
+                maxdeadline = j.deadline;
+            }
+        }
+
+        boolean[] slot = new boolean[maxdeadline];
+        char[] result = new char[maxdeadline];
+
+        int totalprofit = 0;
+
+        for (Job j : jobs) {
+
+            for (int k = Math.min(maxdeadline, j.deadline) - 1; k >= 0; k--) {
+
+                if (!slot[k]) {
+                    slot[k] = true;
+                    result[k] = j.jobid;
+                    totalprofit += j.profit;
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Selected Jobs:");
+
+        for (int i = 0; i < maxdeadline; i++) {
+            if (slot[i]) {
+                System.out.print(result[i] + " ");
+            }
+        }
+
+        System.out.println("\nTotal Profit: " + totalprofit);
+    }
+}
+
+//output
+Selected Jobs:
+B C A 
+Total Profit: 223
