@@ -30,3 +30,310 @@ public class Chatbot {
         }
     }
 }
+
+
+
+
+//Explnation
+Type of Chatbot Used
+
+This is a:
+
+Rule-Based Chatbot
+
+It works using:
+
+predefined conditions
+keywords
+fixed responses
+
+It does NOT use AI or Machine Learning.
+
+Full Code Explanation
+Import Statement
+import java.util.*;
+
+Used to import utility classes.
+
+Mainly:
+
+Scanner class
+Class Declaration
+public class Chatbot
+
+Creates class named Chatbot.
+
+Main Function
+public static void main(String[] args)
+
+Program execution starts from main method.
+
+Scanner Object
+Scanner sc = new Scanner(System.in);
+
+Used to take input from keyboard.
+
+String Variable
+String input;
+
+Stores user message.
+
+Welcome Message
+System.out.println("Chatbot: Hello! How can I help you?");
+
+Displays greeting.
+
+Output:
+
+Chatbot: Hello! How can I help you?
+Infinite Loop
+while (true)
+
+Runs chatbot continuously.
+
+Program keeps taking messages until user types:
+
+bye
+User Input
+System.out.print("You: ");
+
+Displays:
+
+You:
+Read User Message
+input = sc.nextLine().toLowerCase();
+Explanation
+nextLine()
+
+Reads full line input.
+
+toLowerCase()
+
+Converts text to lowercase.
+
+Example:
+
+HELLO → hello
+
+This makes checking easier.
+
+First Condition
+if (input.contains("hello") || input.contains("hi"))
+
+Checks whether user typed:
+
+hello
+hi
+
+|| means OR operator.
+
+Reply
+System.out.println("Chatbot: Hello! Welcome!");
+
+Output:
+
+Chatbot: Hello! Welcome!
+Second Condition
+else if (input.contains("price"))
+
+Checks word:
+
+price
+Response
+System.out.println("Chatbot: Prices start from Rs.500.");
+
+Output:
+
+Chatbot: Prices start from Rs.500.
+Third Condition
+else if (input.contains("order"))
+
+Checks keyword:
+
+order
+Reply
+System.out.println("Chatbot: Your order will be delivered in 3-5 days.");
+Exit Condition
+else if (input.contains("bye"))
+
+Checks:
+
+bye
+Goodbye Message
+System.out.println("Chatbot: Thank you! Visit again.");
+Break Statement
+break;
+
+Stops loop and terminates program.
+
+Default Condition
+else
+
+If no keyword matched.
+
+Unknown Message Reply
+System.out.println("Chatbot: Sorry, I didn't understand.");
+
+Output:
+
+Chatbot: Sorry, I didn't understand.
+Working of Chatbot
+
+Flow:
+
+User Input
+     ↓
+Check Keywords
+     ↓
+Match Found?
+   /     \
+ Yes      No
+ ↓         ↓
+Reply    Default Reply
+Sample Execution
+Input 1
+You: hello
+
+Output:
+
+Chatbot: Hello! Welcome!
+Input 2
+You: price
+
+Output:
+
+Chatbot: Prices start from Rs.500.
+Input 3
+You: order
+
+Output:
+
+Chatbot: Your order will be delivered in 3-5 days.
+Input 4
+You: bye
+
+Output:
+
+Chatbot: Thank you! Visit again.
+
+Program stops.
+
+Important Viva Questions
+Basic Questions
+What is chatbot?
+
+A chatbot is a program that interacts with users automatically.
+
+Which type of chatbot is this?
+
+Rule-based chatbot.
+
+What is NLP?
+
+Natural Language Processing.
+
+It helps machines understand human language.
+
+Does this chatbot use AI?
+
+No.
+
+It uses predefined rules only.
+
+Why while(true) is used?
+
+To keep chatbot running continuously.
+
+Why toLowerCase() is used?
+
+To make comparison case-insensitive.
+
+Example:
+
+HELLO = hello
+What is contains()?
+
+Checks whether string contains a specific word.
+
+What does break do?
+
+Terminates loop.
+
+Why else condition used?
+
+To handle unknown inputs.
+
+Intermediate Viva Questions
+Difference between AI chatbot and rule-based chatbot?
+Rule-Based	AI Chatbot
+Fixed replies	Learns automatically
+Keyword-based	Uses NLP/ML
+Simple	Intelligent
+Advantages of chatbot
+Fast response
+24x7 support
+Reduces human effort
+Limitations
+Cannot understand complex language
+Fixed responses only
+Applications of chatbot
+Banking
+Customer support
+E-commerce
+Healthcare
+External Viva Questions
+Can chatbot work without internet?
+
+Yes, this chatbot runs offline.
+
+Why Scanner class used?
+
+To take user input.
+
+Can we add more responses?
+
+Yes by adding more conditions.
+
+Which data type stores messages?
+
+String.
+
+What happens if user types unknown message?
+
+Default response displayed.
+
+What is the role of loop?
+
+Allows continuous conversation.
+
+How to improve chatbot?
+
+Using:
+
+AI
+Machine Learning
+NLP
+Algorithm of Chatbot
+Algorithm
+Start
+Display welcome message
+Take user input
+Convert input to lowercase
+Check keywords:
+hello/hi
+price
+order
+bye
+Display corresponding response
+If bye → stop
+Else continue
+End
+Time Complexity
+
+Searching keyword in string:
+
+O(n)
+
+where:
+
+n = input length
